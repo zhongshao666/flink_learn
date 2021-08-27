@@ -45,7 +45,6 @@ object FlinkCEPMain {
       TourSubEvent(101, "下单", 12999.0, 1623392865280L, 1000),
       //      new TourEvent(101, "评论", 0.0, 1623392865281L),
       new TourEvent(101, "浏览", 8799, 1623392865282L),
-      //      TourSubEvent(101, "下单", 8799, 1623392865283L, 2000),
       new TourEvent(101, "退出", 0.0, 1623392865284L)
     )
 
@@ -60,7 +59,7 @@ object FlinkCEPMain {
 
 
     val properties = new Properties()
-    properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.18.240:9092")
+    properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.18.231:9092")
     properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "test666")
     val tourStream: SingleOutputStreamOperator[TourEvent] = env
       .addSource(new FlinkKafkaConsumer[String]("ceptest", new SimpleStringSchema(), properties))
