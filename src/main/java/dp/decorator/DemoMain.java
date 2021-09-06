@@ -1,5 +1,7 @@
 package dp.decorator;
 
+import java.util.HashMap;
+
 public class DemoMain {
     public static void main(String[] args){
         Circle circle = new Circle();
@@ -19,5 +21,6 @@ public class DemoMain {
         System.out.println("\nRectangle with red border");
         redRectangle.draw();
         redRectangle1.draw();
+        new HashMap<>();
     }
 }

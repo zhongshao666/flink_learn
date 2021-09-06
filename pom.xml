@@ -98,14 +98,44 @@
             <version>0.9.60</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>3.4.9</version>
+        </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.101tec/zkclient -->
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>0.10</version>
+        </dependency>
     </dependencies>
 
     <build>
+        <!--<finalName>test-1.0-SNAPSHOT</finalName>-->
         <plugins>
             <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>dp.decorator.DemoMain</mainClass>
+                        </manifest>
+                    </archive>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
@@ -124,5 +154,5 @@
         <defaultGoal>package</defaultGoal>
     </build>
 
-    
+
 </project>
