@@ -17,7 +17,7 @@ public class ParameterizedType_Demo {
             for (Type type : types) {
                 System.out.println(type.getTypeName() + " " + (type instanceof ParameterizedType));
                 // Output result:
-                //IA<java.lang.String, java.lang.Integer> true
+                //IA<java.lang.String, java.lang.Integer> true  实现了泛型参数的类型,将泛型参数化了
                 //IB false
                 //IC<X> true
                 //ID false
@@ -41,7 +41,12 @@ public class ParameterizedType_Demo {
 
     }
 }
-
+//interface IG<X,Y>{}
+//interface IA<X,Y>{}
+//interface IB extends IG{}
+//interface IC<X>{}
+//interface ID<X>{}
+//class Grand111<X> implements IA<String,Integer>,IB,IC<X>,ID{}
 class Grand6{}
 class Super6<A,B> extends Grand6{}
 class Child6 extends Super6<String,String>{}
@@ -49,10 +54,5 @@ class Child62<A,B> extends Super6<A,B>{}
 class Child63<A,B> extends Super6{}
 
 
-//interface IG<X,Y>{}
-//interface IA<X,Y>{}
-//interface IB extends IG{}
-//interface IC<X>{}
-//interface ID<X>{}
-//class Grand111<X> implements IA<String,Integer>,IB,IC<X>,ID{}
+
 
