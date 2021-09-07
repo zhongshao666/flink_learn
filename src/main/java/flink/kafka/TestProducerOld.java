@@ -19,7 +19,7 @@ public class TestProducerOld {
         // broker url
         //在默认kafka的单节点配置时，不能使用IP，而是使用localhost进行连接，否则会连接异常。
         //用于初始化时建立链接到kafka集群，以host:port形式，多个以逗号分隔host1:port1,host2:port2；
-        kafkaProps.put("bootstrap.servers", "192.168.18.240:9092"); //,192.168.216.139:9092,192.168.216.140:9092
+        kafkaProps.put("bootstrap.servers", "localhost:9092"); //,192.168.216.139:9092,192.168.216.140:9092
         // 请求需要验证
         //生产者需要server端在接收到消息后，进行反馈确认的尺度，主要用于消息的可靠性传输；acks=0表示生产者不需要来自server的确认；acks=1表示server端将消息保存后即可发送ack，而不必等到其他follower角色的都收到了该消息；acks=all(or acks=-1)意味着server端将等待所有的副本都被接收后才发送确认。
         kafkaProps.put("acks", "all");
@@ -58,7 +58,7 @@ public class TestProducerOld {
 
 
         arr.forEach(a -> {
-            producer.send(new ProducerRecord<>("ceptest", a));
+            producer.send(new ProducerRecord<>("test666", a));
         });
 
 

@@ -14,7 +14,7 @@ object KafkaTest {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
     env.setParallelism(1)
     val properties = new Properties()
-    properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.18.233:9092")
+    properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092")
     properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "test666")
     val kafkaStream: DataStreamSource[String] = env.addSource(new FlinkKafkaConsumer[String]("test666", new SimpleStringSchema(), properties))
     kafkaStream.print("test666")
@@ -28,9 +28,9 @@ object KafkaTest {
     kafkaPartternStream.print()*/
 
     val propertiesPro = new Properties
-    propertiesPro.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.18.240:9092")
+    propertiesPro.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092")
     val kafkaPro = new FlinkKafkaProducer[String](
-      "test888",
+      "test777",
       new SimpleStringSchema(),
       properties
     )
