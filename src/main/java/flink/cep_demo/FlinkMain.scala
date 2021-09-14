@@ -25,12 +25,12 @@ object FlinkMain {
         override def extractTimestamp(element: Event, recordTimestamp: Long): Long = System.currentTimeMillis()
       })
     val events: Seq[Event] = Seq(
-      Event(1, "x", 1623392865000L),
+      Event(0, "x", 1623392865000L),
       Event(1, "c", 1623392866000L),
-      Event(1, "b", 1623392867000L),
-      Event(1, "b", 1623392868000L),
-      Event(1, "a", 1623392869000L),
-      Event(1, "b", 1623392869000L)
+      Event(2, "b", 1623392867000L),
+      Event(3, "b", 1623392868000L),
+      Event(4, "a", 1623392869000L),
+      Event(5, "b", 1623392869000L)
     )
     val stream: DataStream[Event] = env
       .fromCollection(events).assignTimestampsAndWatermarks(value)
@@ -38,27 +38,39 @@ object FlinkMain {
     val value1: DataStream[Event] = new DataStream[Event](stream.javaStream) // scala->java   java->scala
 
 
-    val pattern: Pattern[Event, Event] = Pattern.begin[Event]("start").where((_: Event).name.equals("c")) //.optional
-      .followedByAny("second").where((_: Event).name.equals("a")).optional
+    //模式创建
+    val pattern: Pattern[Event, Event] = Pattern
+      .begin[Event]("start").where(_.name.equals("c"))
+      .followedByAny("second").where(_.name.equals("a")).optional
 
     val patternStream: PatternStream[Event] = CEP.pattern(stream, pattern)
 
-
-    val resultStream: DataStream[String] = patternStream.select(new SelectFunc)
-    val resultStream2: DataStream[String] = patternStream.select((map: collection.Map[String, Iterable[Event]]) => {
-      deal(map)
+    //事件提取
+    val resultStream: DataStream[String] = patternStream.select((map: collection.Map[String, Iterable[Event]]) => {
+      val e1: String =
+        if (map.contains("start")) {
+          map.get("start").toList.head.toString
+        } else ""
+      val e2: String = if (map.contains("second")) {
+        map.get("second").toList.head.toString
+      } else ""
+      e1 + " " + e2
     })
 
-    val outputTag: OutputTag[String] = OutputTag[String]("side-output")
-    val resultStream3: DataStream[String] = patternStream.flatSelect(new FlatSelectFunc)
-
-    val outStream: DataStream[String] = resultStream3.getSideOutput(outputTag)
-    resultStream3.print("result3")
-    outStream.print("sideOutput")
-
-
     resultStream.print("result")
-    resultStream2.print("result2")
+
+    //    val resultStream: DataStream[String] = patternStream.select(new SelectFunc)
+    //
+    //    val outputTag: OutputTag[String] = OutputTag[String]("side-output")
+    //    val resultStream3: DataStream[String] = patternStream.flatSelect(new FlatSelectFunc)
+    //
+    //    val outStream: DataStream[String] = resultStream3.getSideOutput(outputTag)
+    //    resultStream3.print("result3")
+    //    outStream.print("sideOutput")
+    //
+    //
+
+    //    resultStream2.print("result2")
     env.execute()
 
 
@@ -68,19 +80,19 @@ object FlinkMain {
     //    val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
     //    val str: String = now.format(formatter)
   }
-  def deal(map: collection.Map[String, Iterable[Event]]): String ={
-    val e1: String =
-      if (map.contains("start")) {
-        map.get("start").toList.head.toString
+  /*  def deal(map: collection.Map[String, Iterable[Event]]): String ={
+      val e1: String =
+        if (map.contains("start")) {
+          map.get("start").toList.head.toString
+        } else ""
+      val e2: String = if (map.contains("second")) {
+        map.get("second").toList.head.toString
       } else ""
-    val e2: String = if (map.contains("second")) {
-      map.get("second").toList.head.toString
-    } else ""
-    e1 + " " + e2
-  }
+      e1 + " " + e2
+    }*/
 }
 
-class SelectFunc extends PatternSelectFunction[Event, String] {
+/*class SelectFunc extends PatternSelectFunction[Event, String] {
   override def select(map: util.Map[String, util.List[Event]]): String = {
     val e1: String =
       if (map.contains("start")) {
@@ -107,6 +119,6 @@ class FlatSelectFunc extends PatternFlatSelectFunction[Event,String]{
       } else ""
     collector.collect(e1 + " " + e2)
   }
-}
+}*/
 
 //class FlatSelectFunc2 extends
