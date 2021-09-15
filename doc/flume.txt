@@ -1,0 +1,41 @@
+a1.sources = fs
+a1.channels = mc1
+a1.sinks = avro-sink
+
+a1.sources.fs.channels = mc1
+a1.sinks.avro-sink.channel = mc1
+
+#source
+#a1.sources.fs.type = exec
+#a1.sources.fs.command=tail -f /root/a.txt
+
+a1.sources.fs.type = org.apache.flume.source.kafka.KafkaSource
+a1.sources.fs.zookeeperConnect = 192.168.244.71:2181
+a1.sources.fs.topic = test666
+a1.sources.fs.groupId = flume
+a1.sources.fs.kafka.consumer.timeout.ms = 100
+
+a1.sources.fs.kafka.consumer.security.protocol = SASL_PLAINTEXT
+a1.sources.fs.kafka.consumer.sasl.mechanism = GSSAPI
+a1.sources.fs.kafka.consumer.sasl.kerberos.service.name = kafka
+
+#a1.sources.fs.kafka.producer.security.protocol = SASL_PLAINTEXT
+#a1.sources.fs.kafka.producer.sasl.mechanism = PLAIN
+
+
+
+#channel1
+a1.channels.mc1.type = memory
+a1.channels.mc1.capacity = 10000
+a1.channels.mc1.transactionCapacity = 10000
+a1.channels.mc1.byteCapacityBufferPercentage = 20
+a1.channels.mc1.byteCapacity = 800000
+
+#sink1
+#a1.sinks.avro-sink.type = file_roll
+#a1.sinks.avro-sink.sink.directory = /data/mysink
+a1.sinks.avro-sink.type = logger
+
+
+
+bin/flume-ng agent -n a1 -c conf -f flume666.conf -Dflume.root.logger=INFO,console

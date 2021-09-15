@@ -2,6 +2,7 @@ package test;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.HashSet;
 
 //ParameterizedType是Type接口的子接口，表示参数化的类型，即实现了泛型参数的类型。需要注意：
 //如果直接用bean对象instanceof ParameterizedType，结果都是false。
@@ -11,6 +12,7 @@ import java.lang.reflect.Type;
 public class ParameterizedType_Demo {
 
     public static void main(String[] args) {
+        HashSet<Object> objects = new HashSet<>();
         Grand111 grand = new Grand111();
         Type[] types = grand.getClass().getGenericInterfaces();
         if (types != null) {
