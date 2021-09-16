@@ -17,5 +17,6 @@ public class MySql {
         statement.close();
         conn.close();
 
+        new HashMap<>();
     }
 }

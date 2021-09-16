@@ -44,3 +44,40 @@ public class TestHashMap {
 
     }
 }
+
+interface I1{
+    void m1();
+    void m();
+}
+
+interface I2{
+    void m2();
+    public abstract void m();
+}
+
+interface I3 extends I1,I2{
+    void m3();
+}
+
+class C1 implements I3{
+
+    @Override
+    public void m1() {
+
+    }
+
+    @Override
+    public void m2() {
+
+    }
+
+    @Override
+    public void m() {
+
+    }
+
+    @Override
+    public void m3() {
+
+    }
+}
