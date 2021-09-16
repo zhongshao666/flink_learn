@@ -1,0 +1,15 @@
+KafkaServer {
+  com.sun.security.auth.module.Krb5LoginModule required
+  useKeyTab=true
+  storeKey=true
+  keyTab="/Users/zhongzhihao/IdeaProjects/flink_learn/config/kafka.keytab"
+  principal="kafka/secsmartai@HADOOP.COM";
+};
+KafkaClient {
+  com.sun.security.auth.module.Krb5LoginModule required
+  useKeyTab=true
+  storeKey=true
+  keyTab="/Users/zhongzhihao/IdeaProjects/flink_learn/config/kafka.keytab"
+  principal="kafka/secsmartai@HADOOP.COM"
+  userTicketCache=true;
+};
