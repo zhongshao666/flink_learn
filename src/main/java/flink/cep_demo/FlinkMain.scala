@@ -2,18 +2,11 @@ package flink.cep_demo
 
 
 import org.apache.flink.api.common.eventtime.{SerializableTimestampAssigner, WatermarkStrategy}
-import org.apache.flink.cep.{PatternFlatSelectFunction, PatternSelectFunction}
-import org.apache.flink.cep.pattern.conditions.SimpleCondition
-import org.apache.flink.cep.scala.{CEP, PatternStream}
 import org.apache.flink.cep.scala.pattern.Pattern
+import org.apache.flink.cep.scala.{CEP, PatternStream}
 import org.apache.flink.streaming.api.scala._
-import org.apache.flink.util.Collector
 
-import java.sql.Timestamp
-import java.time.format.DateTimeFormatter
-import java.time.{Duration, LocalDateTime, ZoneOffset}
-import java.util
-import scala.collection.convert.ImplicitConversions.{`collection AsScalaIterable`, `map AsScala`}
+import java.time.Duration
 
 object FlinkMain {
   def main(args: Array[String]): Unit = {
@@ -28,9 +21,8 @@ object FlinkMain {
       Event(0, "x", 1623392865000L),
       Event(1, "c", 1623392866000L),
       Event(2, "b", 1623392867000L),
-      Event(3, "b", 1623392868000L),
-      Event(4, "a", 1623392869000L),
-      Event(5, "b", 1623392869000L)
+      Event(3, "a", 1623392869000L),
+      Event(4, "b", 1623392869000L)
     )
     val stream: DataStream[Event] = env
       .fromCollection(events).assignTimestampsAndWatermarks(value)
@@ -39,11 +31,17 @@ object FlinkMain {
 
 
     //模式创建
-    val pattern: Pattern[Event, Event] = Pattern
+    val start: Pattern[Event, Event] = Pattern
       .begin[Event]("start").where(_.name.equals("c"))
-      .followedByAny("second").where(_.name.equals("a")).optional
+    //      .followedByAny("second").where(_.name.equals("a")).optional
+    val sec1: Pattern[Event, Event] = start.followedByAny("second").where(_.name.equals("a")).optional
 
-    val patternStream: PatternStream[Event] = CEP.pattern(stream, pattern)
+    val sec2: Pattern[Event, Event] = start.followedByAny("third").where(_.name.equals("b")).optional
+
+
+
+    val patternStream: PatternStream[Event] = CEP.pattern(stream, sec1)
+    val patternStream2: PatternStream[Event] = CEP.pattern(stream, sec2)
 
     //事件提取
     val resultStream: DataStream[String] = patternStream.select((map: collection.Map[String, Iterable[Event]]) => {
@@ -57,7 +55,19 @@ object FlinkMain {
       e1 + " " + e2
     })
 
+    val resultStream2: DataStream[String] = patternStream2.select((map: collection.Map[String, Iterable[Event]]) => {
+      val e1: String =
+        if (map.contains("start")) {
+          map.get("start").toList.head.toString
+        } else ""
+      val e2: String = if (map.contains("third")) {
+        map.get("third").toList.head.toString
+      } else ""
+      e1 + " " + e2
+    })
+
     resultStream.print("result")
+//    resultStream2.print("result2")
 
     //    val resultStream: DataStream[String] = patternStream.select(new SelectFunc)
     //

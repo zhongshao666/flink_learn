@@ -77,6 +77,12 @@ object CepTest {
       }
     })
       .within(Time.seconds(10))
+    pattern.next("fail2").where(new SimpleCondition[LoginEvent] {
+      override def filter(t: LoginEvent) = {
+        t.getEventType == "fail"
+      }
+    })
+
 
     val patternStream: PatternStream[LoginEvent] = CEP.pattern(stream.keyBy(new Keyed), pattern)
 
