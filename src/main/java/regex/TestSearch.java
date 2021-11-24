@@ -19,6 +19,9 @@ public class TestSearch {
             int pattern = cursor.match();
             int start = cursor.start();
             int end = cursor.end();
+            System.out.print(pattern+"\t");
+            System.out.print(start+"\t");
+            System.out.print(end+"\n");
         }
     }
 }
