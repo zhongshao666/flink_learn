@@ -10,6 +10,7 @@ public class BookRegex {
         s = s.replace("-", "");
 
         String pattern = "(^978)?\\d{9}[1-9X]$";
+        System.out.println(pattern);
         Pattern p = Pattern.compile(pattern);
         Matcher matcher = p.matcher(s);// 7508027108 9787302551966  7-5600-3879-4
         System.out.println(matcher.find());
