@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/scala" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/annotations" isTestSource="false" generated="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
@@ -36,7 +37,6 @@
     <orderEntry type="library" name="Maven: org.apache.flink:flink-streaming-scala_2.12:1.12.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.flink:flink-streaming-java_2.12:1.12.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.flink:flink-file-sink-common:1.12.4" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-math3:3.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.flink:flink-scala_2.12:1.12.4" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-reflect:2.12.7" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.12.7" level="project" />
@@ -120,5 +120,9 @@
     <orderEntry type="library" name="Maven: com.101tec:zkclient:0.10" level="project" />
     <orderEntry type="library" name="Maven: com.fulmicoton:multiregexp:0.5.1" level="project" />
     <orderEntry type="library" name="Maven: dk.brics.automaton:automaton:1.11-8" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.79" level="project" />
+    <orderEntry type="library" name="Maven: org.openjdk.jmh:jmh-core:1.35" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-math3:3.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjdk.jmh:jmh-generator-annprocess:1.35" level="project" />
   </component>
 </module>

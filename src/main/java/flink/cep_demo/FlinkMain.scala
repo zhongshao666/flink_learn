@@ -15,7 +15,7 @@ object FlinkMain {
     val value: WatermarkStrategy[Event] = WatermarkStrategy
       .forBoundedOutOfOrderness[Event](Duration.ofSeconds(5))
       .withTimestampAssigner(new SerializableTimestampAssigner[Event] {
-        override def extractTimestamp(element: Event, recordTimestamp: Long): Long = System.currentTimeMillis()
+        override def extractTimestamp(element: Event, recordTimestamp: Long): Long = element.time
       })
     val events: Seq[Event] = Seq(
       Event(0, "x", 1623392865000L),
