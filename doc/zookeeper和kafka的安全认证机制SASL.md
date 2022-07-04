@@ -242,3 +242,8 @@ object KafkaTest {
 }
 ````
 
+
+#### flume消费
+增加kafka的jaas
+修改flume-ng,增加OPTS
+flume的conf中打开SASL_PLAINTEXT
