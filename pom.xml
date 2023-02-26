@@ -111,12 +111,6 @@
             <version>0.10</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.fulmicoton/multiregexp -->
-        <dependency>
-            <groupId>com.fulmicoton</groupId>
-            <artifactId>multiregexp</artifactId>
-            <version>0.5.1</version>
-        </dependency>
 
 
     </dependencies>
