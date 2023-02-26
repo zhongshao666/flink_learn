@@ -5,7 +5,6 @@
       <option name="TYPE_ANNOTATION_PRIVATE_MEMBER" value="true" />
       <option name="TYPE_ANNOTATION_LOCAL_DEFINITION" value="true" />
       <option name="TYPE_ANNOTATION_FUNCTION_PARAMETER" value="true" />
-      <option name="TYPE_ANNOTATION_UNDERSCORE_PARAMETER" value="true" />
       <option name="TYPE_ANNOTATION_EXCLUDE_WHEN_TYPE_IS_STABLE" value="false" />
     </ScalaCodeStyleSettings>
   </code_scheme>
