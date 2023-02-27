@@ -1,0 +1,7 @@
+(world,1)
+(are,1)
+(what,1)
+(doing,1)
+(jason,1)
+(you,1)
+(hello,2)
