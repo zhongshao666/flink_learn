@@ -1,0 +1,130 @@
+{
+  "jobs": [
+    {
+      "jid": "f2f99bfc22cefea892dbeff1f0084272",
+      "name": "AlarmFlow",
+      "state": "RESTARTING",
+      "start-time": 1658397216087,
+      "end-time": -1,
+      "duration": 86494,
+      "last-modification": 1658397279142,
+      "tasks": {
+        "total": 10,
+        "created": 0,
+        "scheduled": 0,
+        "deploying": 0,
+        "running": 0,
+        "finished": 0,
+        "canceling": 0,
+        "canceled": 9,
+        "failed": 1,
+        "reconciling": 0
+      }
+    },
+    {
+      "jid": "70f884dc0b2faaa1e0410a1dbab20bf1",
+      "name": "AlarmToNeo4j",
+      "state": "RUNNING",
+      "start-time": 1658397267228,
+      "end-time": -1,
+      "duration": 35353,
+      "last-modification": 1658397267895,
+      "tasks": {
+        "total": 1,
+        "created": 0,
+        "scheduled": 0,
+        "deploying": 0,
+        "running": 1,
+        "finished": 0,
+        "canceling": 0,
+        "canceled": 0,
+        "failed": 0,
+        "reconciling": 0
+      }
+    },
+    {
+      "jid": "c6867802d7d0626af813032d7b9ec439",
+      "name": "kafka2hdfs",
+      "state": "RUNNING",
+      "start-time": 1658397245946,
+      "end-time": -1,
+      "duration": 56635,
+      "last-modification": 1658397246967,
+      "tasks": {
+        "total": 1,
+        "created": 0,
+        "scheduled": 0,
+        "deploying": 0,
+        "running": 1,
+        "finished": 0,
+        "canceling": 0,
+        "canceled": 0,
+        "failed": 0,
+        "reconciling": 0
+      }
+    },
+    {
+      "jid": "5dc053f8d37e2b1d48a2340cb9db86d2",
+      "name": "mysqletc",
+      "state": "RUNNING",
+      "start-time": 1658397255456,
+      "end-time": -1,
+      "duration": 47125,
+      "last-modification": 1658397255971,
+      "tasks": {
+        "total": 1,
+        "created": 0,
+        "scheduled": 0,
+        "deploying": 0,
+        "running": 1,
+        "finished": 0,
+        "canceling": 0,
+        "canceled": 0,
+        "failed": 0,
+        "reconciling": 0
+      }
+    },
+    {
+      "jid": "71f15e7483bf6eda4bcc4fe407a63c5c",
+      "name": "etcserver",
+      "state": "FAILED",
+      "start-time": 1658397241525,
+      "end-time": 1658397302135,
+      "duration": 60610,
+      "last-modification": 1658397302135,
+      "tasks": {
+        "total": 1,
+        "created": 0,
+        "scheduled": 0,
+        "deploying": 0,
+        "running": 0,
+        "finished": 0,
+        "canceling": 0,
+        "canceled": 0,
+        "failed": 1,
+        "reconciling": 0
+      }
+    },
+    {
+      "jid": "a6943f5e0c0fe1cf78b33ab7d21cc364",
+      "name": "DataCollector",
+      "state": "FAILED",
+      "start-time": 1658397226551,
+      "end-time": 1658397288158,
+      "duration": 61607,
+      "last-modification": 1658397288158,
+      "tasks": {
+        "total": 1,
+        "created": 0,
+        "scheduled": 0,
+        "deploying": 0,
+        "running": 0,
+        "finished": 0,
+        "canceling": 0,
+        "canceled": 0,
+        "failed": 1,
+        "reconciling": 0
+      }
+    }
+  ]
+}
